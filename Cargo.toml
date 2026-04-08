@@ -1,0 +1,8 @@
+[workspace]
+members = [
+    "slnk-common",
+    "slnk-elf",
+    "slnk-pe",
+    "slnk",
+]
+resolver = "2"

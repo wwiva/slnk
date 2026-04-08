@@ -1,0 +1,13 @@
+[package]
+name = "slnk"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "slnk"
+path = "src/main.rs"
+
+[dependencies]
+slnk-common = { path = "../slnk-common" }
+slnk-elf    = { path = "../slnk-elf" }
+slnk-pe     = { path = "../slnk-pe" }

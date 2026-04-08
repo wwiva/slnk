@@ -1,0 +1,7 @@
+[package]
+name = "slnk-elf"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+slnk-common = { path = "../slnk-common" }
