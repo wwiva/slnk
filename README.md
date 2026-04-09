@@ -2,11 +2,11 @@
 
 A linker for ELF (Linux) and PE (Windows) executables and shared libraries, written in Rust.
 
-## features
+## Features
 
 **ELF executable (`.elf`)**
-- links x86-64 `.o` object files into static executables
-- all standard x86-64 relocations: `PC32`, `PLT32`, `64`, `32/32S`, `GOTPCREL`, `REX_GOTPCRELX`
+- Links x86-64 `.o` object files into static executables
+- All standard x86-64 relocations: `PC32`, `PLT32`, `64`, `32/32S`, `GOTPCREL`, `REX_GOTPCRELX`
 - TLS: `TPOFF32/64`, `GOTTPOFF`, `PT_TLS` segment, local-exec model
 - GOT construction and GOTPCRELX relaxation for PIC code
 - `.bss`, `SHN_COMMON`, weak symbols, COMDAT deduplication
@@ -15,7 +15,7 @@ A linker for ELF (Linux) and PE (Windows) executables and shared libraries, writ
 - `.a` archive linking with lazy symbol resolution
 
 **ELF shared library (`.so`)**
-- produces `ET_DYN` position-independent shared objects
+- Produces `ET_DYN` position-independent shared objects
 - `.dynsym`, `.dynstr`, `.gnu.hash` with correct bucket-sorted symbol order
 - `PT_DYNAMIC`, `PT_GNU_STACK`, per-permission `PT_LOAD` segments
 - `R_X86_64_RELATIVE` base relocations via `.rela.dyn`
@@ -23,22 +23,22 @@ A linker for ELF (Linux) and PE (Windows) executables and shared libraries, writ
 - `dlopen`/`dlsym` compatible
 
 **PE executable (`.exe`)**
-- links x86-64 COFF `.obj` files into PE32+ executables
-- all standard x86-64 COFF relocations: `REL32`, `REL32_1..5`, `ADDR64`, `ADDR32`, `ADDR32NB`, `SECTION`, `SECREL`
-- import table (`.idata`) built from `__imp_XXX` references and `.idata$*` sections
-- reads DLL names and hints from mingw import libraries (`.a`/`.lib`)
-- weak external symbols (`IMAGE_SYM_CLASS_WEAK_EXTERNAL`)
+- Links x86-64 COFF `.obj` files into PE32+ executables
+- All standard x86-64 COFF relocations: `REL32`, `REL32_1..5`, `ADDR64`, `ADDR32`, `ADDR32NB`, `SECTION`, `SECREL`
+- Import table (`.idata`) built from `__imp_XXX` references and `.idata$*` sections
+- Reads DLL names and hints from mingw import libraries (`.a`/`.lib`)
+- Weak external symbols (`IMAGE_SYM_CLASS_WEAK_EXTERNAL`)
 - COMDAT deduplication (`.text$X` etc.)
 - `.bss`, `SHN_COMMON`, `.reloc` base relocations
 - `.rsrc` resource section for icons and version metadata
 - `.a`/`.lib` archive linking with lazy symbol resolution
 
 **PE DLL (`.dll`)**
-- sets `IMAGE_FILE_DLL` characteristic
+- Sets `IMAGE_FILE_DLL` characteristic
 - `.edata` export directory with EAT, NPT, and ordinal table
 - `.reloc` base relocation section (required for DLL rebasing)
 
-## usage
+## Usage
 
 ```
 slnk [options] file.o ...          # ELF executable (auto-detected)
@@ -47,7 +47,7 @@ slnk --pe [options] file.obj ...   # PE executable
 slnk --dll [options] file.obj ...  # PE DLL
 ```
 
-**options**
+**Options**
 ```
 -o <file>                output file (default: a.out / a.exe / a.so / a.dll)
 -e <symbol>              entry point (default: _start / mainCRTStartup)
@@ -65,7 +65,7 @@ slnk --dll [options] file.obj ...  # PE DLL
 --pe-subsystem <s>       console | windows (default: console)
 ```
 
-## build
+## Build
 
 ```
 cargo build --release
@@ -75,7 +75,7 @@ binary at `target/release/slnk` on Linux or `target/release/slnk.exe` on Windows
 
 requirements: Rust 1.75+
 
-## examples
+## Examples
 
 **ELF executable**
 ```bash
@@ -127,7 +127,7 @@ slnk --pe \
   -o app.exe main.obj
 ```
 
-## architecture
+## Architecture
 
 ```
 slnk-workspace/
@@ -149,6 +149,6 @@ slnk-workspace/
     main.rs            argument parsing, archive loading, format dispatch
 ```
 
-## license
+## License
 
 GPL v3.
